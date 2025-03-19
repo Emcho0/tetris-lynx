@@ -1,21 +1,11 @@
-## Rspeedy project
+# Tetris u Lynxu
 
-This is a ReactLynx project bootstrapped with `create-rspeedy`.
+Ova igra Tetris razvijena je u Lynxu kako bi se olakšao proces kodiranja i debagovanja, a istovremeno omogućuje jednostavnu integraciju s mobilnim uređajima, sa skeniranjem QR koda.
 
-## Getting Started
-
-First, install the dependencies:
-
-```bash
-pnpm install
-```
-
-Then, run the development server:
+## Kako pokrenuti aplikaciju?
+Potrebno je imati NodeJS i aplikaciju LynxExplorer na vasem iOS ili Android uredjaju kako bi se mogao povezati telefon sa aplikacijom.
 
 ```bash
-pnpm run dev
+npm install # Instaliranje potrebnih komponenti
+npm run dev # Pokretanje servera
 ```
-
-Scan the QRCode in the terminal with your LynxExplorer App to see the result.
-
-You can start editing the page by modifying `src/App.tsx`. The page auto-updates as you edit the file.

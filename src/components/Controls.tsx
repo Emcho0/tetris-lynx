@@ -1,9 +1,15 @@
-export function Controls() {
+export function Controls({ onPressLeft, onPressRight, onPressPlace }) {
   return (
     <view className="Controls">
-      <text className="Button">Lijevo</text>
-      <text className="Button">Postavi</text>
-      <text className="Button">Desno</text>
+      <text className="Button" bindtap={onPressLeft}>
+        Lijevo
+      </text>
+      <text className="Button" bindtap={onPressPlace}>
+        Postavi
+      </text>
+      <text className="Button" bindtap={onPressRight}>
+        Desno
+      </text>
     </view>
   );
 }

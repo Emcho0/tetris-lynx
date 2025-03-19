@@ -5,10 +5,22 @@ import "./styles/App.css";
 import { Controls } from "./components/Controls.jsx";
 
 export function App() {
-  // Default theme is Yorumi Shade ("shade")
-  const [theme, setTheme] = useState("shade");
+  const [theme, setTheme] = useState("kraken");
+  const [message, setMessage] = useState("");
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === "shade" ? "mist" : "shade"));
+    setTheme((prev) => (prev === "kraken" ? "mist" : "kraken"));
+  }, []);
+
+  const handleLeftPress = useCallback(() => {
+    setMessage("Idemo lijevo");
+  }, []);
+
+  const handleRightPress = useCallback(() => {
+    setMessage("Idem desno");
+  }, []);
+
+  const handlePlacePress = useCallback(() => {
+    setMessage("Postavljam blokove");
   }, []);
 
   const appClass = `App ${theme}`;
@@ -24,12 +36,19 @@ export function App() {
         <text className="Description">Tetris Lynx</text>
         <Grid rows={15} cols={10} />
         <view className="ScoreAndControls">
-          <view className="Score">
-            <ScoreBoard score={0} />
+          <view className="ScoreControlsRow">
+            <view className="Score">
+              <ScoreBoard score={0} />
+            </view>
+            <view className="Controls">
+              <Controls
+                onPressLeft={handleLeftPress}
+                onPressPlace={handlePlacePress}
+                onPressRight={handleRightPress}
+              />
+            </view>
           </view>
-          <view className="Controls">
-            <Controls />
-          </view>
+          <text className="Description">{message}</text>
         </view>
       </view>
     </view>

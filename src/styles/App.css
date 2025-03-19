@@ -1,6 +1,6 @@
 :root {
   --cell-size: 30px;
-  --game-grid-bg: #4a4d59;
+  --game-grid-bg: #1d202b;
   --cell-border: 1px solid #c6dfec;
 
   --background: #0f101b;
@@ -9,14 +9,14 @@
   --grid-border: #c6dfec;
 }
 
-/* Yorumi Shade */
-.shade {
-  --background: #0f101b;
-  --foreground: #bdbfcb;
-  --game-grid-bg: #4a4d59;
-  --cell-border: 1px solid #c6dfec;
+/* Yorumi Kraken */
+.kraken {
+  --background: #0e0d17;
+  --foreground: #c0bce6;
+  --game-grid-bg: #1d202b;
+  --cell-border: 1px solid #bdbfcb;
   --button-text: #c6dfec;
-  --button-bg: #4a4d59;
+  --button-bg: #121520;
   --score-bg: #597bc0;
   --score-fg: #c6dfec;
   --grid-border: #c6dfec;
@@ -114,10 +114,18 @@
   justify-content: center;
 }
 
+/*Grupisanje elemenata*/
 .ScoreAndControls {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 20px; /* adjust spacing as needed */
+  gap: 20px;
+}
+
+.ScoreControlsRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
