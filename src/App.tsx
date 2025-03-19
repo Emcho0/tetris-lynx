@@ -1,45 +1,32 @@
-import { useCallback, useEffect, useState } from '@lynx-js/react'
-
-import './App.css'
-import arrow from './assets/arrow.png'
-import lynxLogo from './assets/lynx-logo.png'
-import reactLynxLogo from './assets/react-logo.png'
+import { useCallback, useState } from "@lynx-js/react";
+import { Grid } from "./components/Grid.jsx";
+import { ScoreBoard } from "./components/ScoreBoard.jsx";
+import "./styles/App.css";
 
 export function App() {
-  const [alterLogo, setAlterLogo] = useState(false)
+  // Default theme is Yorumi Shade ("shade")
+  const [theme, setTheme] = useState("shade");
 
-  useEffect(() => {
-    console.info('Hello, ReactLynx')
-  }, [])
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "shade" ? "mist" : "shade"));
+  }, []);
 
-  const onTap = useCallback(() => {
-    'background only'
-    setAlterLogo(!alterLogo)
-  }, [alterLogo])
+  const appClass = `App ${theme}`;
+  const buttonClass = `Button ${theme}`;
 
   return (
-    <view>
-      <view className='Background' />
-      <view className='App'>
-        <view className='Banner'>
-          <view className='Logo' bindtap={onTap}>
-            {alterLogo
-              ? <image src={reactLynxLogo} className='Logo--react' />
-              : <image src={lynxLogo} className='Logo--lynx' />}
-          </view>
-          <text className='Title'>React</text>
-          <text className='Subtitle'>on Lynx</text>
+    <view className={appClass}>
+      <view className="Content">
+        <text className="Description">Tetris Lynx</text>
+        <Grid rows={15} cols={10} />
+        <view className="Score">
+          <ScoreBoard score={0} />
         </view>
-        <view className='Content'>
-          <image src={arrow} className='Arrow' />
-          <text className='Description'>Tap the logo and have fun!</text>
-          <text className='Hint'>
-            Edit<text style={{ fontStyle: 'italic' }}>{' src/App.tsx '}</text>
-            to see updates!
-          </text>
+        {/* Tap to toggle theme */}
+        <view bindtap={toggleTheme}>
+          <text className={buttonClass}>Switch Theme</text>
         </view>
-        <view style={{ flex: 1 }}></view>
       </view>
     </view>
-  )
+  );
 }

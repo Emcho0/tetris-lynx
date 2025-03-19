@@ -13,7 +13,7 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single"
+      "quoteStyle": "double"
     }
   },
   "css": {
@@ -24,6 +24,10 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedFunctionParameters": "warn"
+      },
       "recommended": true
     }
   }

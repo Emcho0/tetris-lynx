@@ -1,0 +1,109 @@
+:root {
+  --cell-size: 30px;
+  --game-grid-bg: #4a4d59;
+  --cell-border: 1px solid #c6dfec;
+
+  --background: #0f101b;
+  --foreground: #bdbfcb;
+  --button-text: #bdbfcb;
+  --grid-border: #c6dfec;
+}
+
+/* Yorumi Shade */
+.shade {
+  --background: #0f101b;
+  --foreground: #bdbfcb;
+  --game-grid-bg: #4a4d59;
+  --cell-border: 1px solid #c6dfec;
+  --button-text: #c6dfec;
+  --button-bg: #4a4d59;
+  --score-bg: #597bc0;
+  --score-fg: #c6dfec;
+  --grid-border: #c6dfec;
+}
+
+/* Yorumi Mist */
+.mist {
+  --background: #bdbfcb;
+  --foreground: #060914;
+  --game-grid-bg: #343742;
+  --cell-border: 1px solid #c6dfec;
+  --button-text: #c6dfec;
+  --button-bg: #343742;
+  --score-bg: #42608a;
+  --score-fg: #c6dfec;
+  --grid-border: #060914;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.Description {
+  font-size: 20px;
+  color: var(--foreground);
+  text-align: center;
+}
+
+.GameGrid {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--game-grid-bg);
+  border: 3px solid var(--grid-border);
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 2px;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: var(--game-grid-bg);
+  border: var(--cell-border);
+  box-sizing: border-box;
+}
+
+.Content {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.Score {
+  font-size: 20px;
+  color: var(--score-fg);
+  text-align: center;
+}
+
+.ScoreBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--score-bg);
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.Button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: var(--button-bg);
+  border: 1px solid var(--button-text);
+  color: var(--button-text);
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
