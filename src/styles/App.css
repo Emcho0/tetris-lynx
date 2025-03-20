@@ -9,17 +9,13 @@
   --grid-border: #c6dfec;
 }
 
-/* Yorumi Kraken */
+/*  Yorumi Kraken */
 .kraken {
   --background: #0e0d17;
   --foreground: #c0bce6;
   --game-grid-bg: #1d202b;
   --cell-border: 1px solid #bdbfcb;
-  --button-text: #c6dfec;
   --button-bg: #121520;
-  --score-bg: #597bc0;
-  --score-fg: #c6dfec;
-  --grid-border: #c6dfec;
 }
 
 /* Yorumi Mist */
@@ -28,13 +24,10 @@
   --foreground: #060914;
   --game-grid-bg: #343742;
   --cell-border: 1px solid #c6dfec;
-  --button-text: #c6dfec;
   --button-bg: #343742;
-  --score-bg: #42608a;
-  --score-fg: #c6dfec;
-  --grid-border: #060914;
 }
 
+/* Stil aplikacije */
 .App {
   position: relative;
   min-height: 100vh;
@@ -47,11 +40,13 @@
 }
 
 .Description {
-  font-size: 20px;
   color: var(--foreground);
+  font-size: 20px;
   text-align: center;
+  margin: 5px;
 }
 
+/* Stilovi za igracu plocu */
 .GameGrid {
   display: flex;
   flex-direction: column;
@@ -75,28 +70,14 @@
   box-sizing: border-box;
 }
 
-.Content {
-  margin-top: 16px;
-  text-align: center;
-}
-
-.Score {
-  font-size: 20px;
-  color: var(--score-fg);
-  text-align: center;
-}
-
-.ScoreBoard {
+/* Controls styling */
+.Controls {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--score-bg);
-  text-align: center;
+  gap: 15px;
   margin-top: 10px;
-  border-radius: 5px;
-  padding: 10px;
 }
 
+/* Button styling */
 .Button {
   cursor: pointer;
   padding: 10px;
@@ -105,27 +86,52 @@
   color: var(--button-text);
   font-size: 16px;
   border-radius: 5px;
-  margin-top: 10px;
-}
-.Controls {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  justify-content: center;
 }
 
-/*Grupisanje elemenata*/
-.ScoreAndControls {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+/* Tetromino color rules */
+
+/* In dark theme (kraken) pieces are light */
+.kraken .tetromino-I {
+  background-color: #67bbb9;
+}
+.kraken .tetromino-O {
+  background-color: #c39d55;
+}
+.kraken .tetromino-T {
+  background-color: #bb5d7d;
+}
+.kraken .tetromino-S {
+  background-color: #8cb167;
+}
+.kraken .tetromino-Z {
+  background-color: #c65e53;
+}
+.kraken .tetromino-J {
+  background-color: #597bc0;
+}
+.kraken .tetromino-L {
+  background-color: #c97e4f;
 }
 
-.ScoreControlsRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
+/* In light theme (mist) pieces are dark */
+.mist .tetromino-I {
+  background-color: #42608a;
+}
+.mist .tetromino-O {
+  background-color: #9d672f;
+}
+.mist .tetromino-T {
+  background-color: #8d3f5a;
+}
+.mist .tetromino-S {
+  background-color: #697f4d;
+}
+.mist .tetromino-Z {
+  background-color: #913b3b;
+}
+.mist .tetromino-J {
+  background-color: #0d2c4e;
+}
+.mist .tetromino-L {
+  background-color: #543407;
 }
