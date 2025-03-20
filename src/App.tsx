@@ -16,11 +16,11 @@ export function App() {
   }, []);
 
   const handleRightPress = useCallback(() => {
-    setMessage("Idem desno");
+    setMessage("Idemo desno");
   }, []);
 
   const handlePlacePress = useCallback(() => {
-    setMessage("Postavljam blokove");
+    setMessage("Postavljamo blokove");
   }, []);
 
   const appClass = `App ${theme}`;
@@ -28,7 +28,7 @@ export function App() {
 
   return (
     <view className={appClass}>
-      {/* Tap to toggle theme */}
+      {/* Tipka za mijenjanje teme */}
       <view className="Grid" bindtap={toggleTheme}>
         <text className={buttonClass}>Switch Theme</text>
       </view>
