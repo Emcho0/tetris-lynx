@@ -7,7 +7,7 @@ export interface Tetromino {
   rotations: number[][][];
   color: string;
 }
-
+// lista tetromina [I, O, T, S, Z, J, L]
 export const tetrominos: Tetromino[] = [
   {
     name: "I",
@@ -226,6 +226,7 @@ export function clearFullLines(grid: (string | 0)[][]): {
   return { grid: newGrid };
 }
 
+// funkcija koja se poziva kada se tetromino spusti na dno
 export function updateGame(
   state: GameState,
   tetrominoShape: number[][],
@@ -249,4 +250,23 @@ export function updateGame(
   } else {
     return { state, newPos, landed: false };
   }
+}
+// mjesto gdje se ubacuju tetromini
+let tetrominoBag: Tetromino[] = [];
+
+
+// funkcija koja uzima random tetromino iz liste tetromina
+export function getNextRandomTetromino(): Tetromino {
+  if (tetrominoBag.length === 0) {
+    tetrominoBag = [...listTetrominos()];
+    for (let i = tetrominoBag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tetrominoBag[i], tetrominoBag[j]] = [tetrominoBag[j], tetrominoBag[i]];
+    }
+  }
+  return tetrominoBag.pop()!;
+}
+// resetiranje tetromina na prazan niz
+export function resetTetrominoBag(): void {
+  tetrominoBag = [];
 }

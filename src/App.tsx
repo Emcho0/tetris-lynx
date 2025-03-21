@@ -9,14 +9,17 @@ import {
   mergeTetromino,
   rotateTetromino,
   updateGame,
+  getNextRandomTetromino,
+  resetTetrominoBag
 } from "./utils/gameLogic.js";
 import "./styles/App.css";
 
 export function App() {
   const [theme, setTheme] = useState("kraken");
   const [message, setMessage] = useState("");
+
   const [gameState, setGameState] = useState(initGame());
-  const [fallingTetromino, setFallingTetromino] = useState(listTetrominos()[0]);
+  const [fallingTetromino, setFallingTetromino] = useState(getNextRandomTetromino());
   const [rotationIndex, setRotationIndex] = useState(0);
   const [tetrominoPos, setTetrominoPos] = useState({ row: 0, col: 4 });
   const [gameOver, setGameOver] = useState(false);
@@ -99,11 +102,9 @@ export function App() {
     setGameState({ grid: cleared.grid });
     setTetrominoPos({ row: 0, col: 4 });
     setMessage("Piece placed (hard drop)");
-    // Cycle to next tetromino.
-    const nextIndex =
-      (listTetrominos().indexOf(fallingTetromino) + 1) %
-      listTetrominos().length;
-    const newTetromino = listTetrominos()[nextIndex];
+
+
+    const newTetromino = getNextRandomTetromino();
     // Check if new tetromino cannot spawn → game over.
     if (
       checkCollision(cleared.grid, newTetromino.rotations[0], {
@@ -132,10 +133,8 @@ export function App() {
       setGameState(result.state);
       setTetrominoPos(result.newPos);
       if (result.landed) {
-        const nextIndex =
-          (listTetrominos().indexOf(fallingTetromino) + 1) %
-          listTetrominos().length;
-        const newTetromino = listTetrominos()[nextIndex];
+
+        const newTetromino = getNextRandomTetromino();
         // If new piece collides immediately at spawn, game over.
         if (
           checkCollision(result.state.grid, newTetromino.rotations[0], {
@@ -155,8 +154,9 @@ export function App() {
   }, [gameState, fallingTetromino, rotationIndex, tetrominoPos, gameOver]);
 
   const restartGame = useCallback(() => {
+    resetTetrominoBag();
     setGameState(initGame());
-    setFallingTetromino(listTetrominos()[0]);
+    setFallingTetromino(getNextRandomTetromino());
     setRotationIndex(0);
     setTetrominoPos({ row: 0, col: 4 });
     setMessage("");
