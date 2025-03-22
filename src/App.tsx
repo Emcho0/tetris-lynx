@@ -5,12 +5,11 @@ import {
   checkCollision,
   clearFullLines,
   initGame,
-  listTetrominos,
   mergeTetromino,
   rotateTetromino,
   updateGame,
   getNextRandomTetromino,
-  resetTetrominoBag
+  resetTetrominoBag,
 } from "./utils/gameLogic.js";
 import "./styles/App.css";
 
@@ -19,7 +18,9 @@ export function App() {
   const [message, setMessage] = useState("");
 
   const [gameState, setGameState] = useState(initGame());
-  const [fallingTetromino, setFallingTetromino] = useState(getNextRandomTetromino());
+  const [fallingTetromino, setFallingTetromino] = useState(
+    getNextRandomTetromino(),
+  );
   const [rotationIndex, setRotationIndex] = useState(0);
   const [tetrominoPos, setTetrominoPos] = useState({ row: 0, col: 4 });
   const [gameOver, setGameOver] = useState(false);
@@ -103,7 +104,6 @@ export function App() {
     setTetrominoPos({ row: 0, col: 4 });
     setMessage("Piece placed (hard drop)");
 
-
     const newTetromino = getNextRandomTetromino();
     // Check if new tetromino cannot spawn → game over.
     if (
@@ -133,7 +133,6 @@ export function App() {
       setGameState(result.state);
       setTetrominoPos(result.newPos);
       if (result.landed) {
-
         const newTetromino = getNextRandomTetromino();
         // If new piece collides immediately at spawn, game over.
         if (

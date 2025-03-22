@@ -254,7 +254,6 @@ export function updateGame(
 // mjesto gdje se ubacuju tetromini
 let tetrominoBag: Tetromino[] = [];
 
-
 // funkcija koja uzima random tetromino iz liste tetromina
 export function getNextRandomTetromino(): Tetromino {
   if (tetrominoBag.length === 0) {
