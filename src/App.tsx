@@ -4,18 +4,17 @@ import { Grid } from "./components/Grid.jsx";
 import {
   checkCollision,
   clearFullLines,
+  getNextRandomTetromino,
   initGame,
   mergeTetromino,
+  resetTetrominoBag,
   rotateTetromino,
   updateGame,
-  getNextRandomTetromino,
-  resetTetrominoBag,
 } from "./utils/gameLogic.js";
 import "./styles/App.css";
 
 export function App() {
   const [theme, setTheme] = useState("kraken");
-  const [message, setMessage] = useState("");
 
   const [gameState, setGameState] = useState(initGame());
   const [fallingTetromino, setFallingTetromino] = useState(
@@ -34,7 +33,6 @@ export function App() {
       fallingTetromino,
       rotationIndex,
     );
-    // Create a mutable copy for wall-kick.
     const newPos = { ...tetrominoPos };
     const gridWidth = gameState.grid[0].length;
     const shapeWidth = shape[0].length;
@@ -45,12 +43,10 @@ export function App() {
       newPos.col = gridWidth - shapeWidth;
     }
     if (checkCollision(gameState.grid, shape, newPos)) {
-      setMessage("Rotation blocked");
       return;
     }
     setTetrominoPos(newPos);
     setRotationIndex(nextIndex);
-    setMessage("Rotated");
   }, [fallingTetromino, rotationIndex, tetrominoPos, gameState]);
 
   const handleLeftPress = useCallback(() => {
@@ -63,7 +59,6 @@ export function App() {
       )
     ) {
       setTetrominoPos(newPos);
-      setMessage("Move left");
     }
   }, [tetrominoPos, fallingTetromino, rotationIndex, gameState]);
 
@@ -77,7 +72,6 @@ export function App() {
       )
     ) {
       setTetrominoPos(newPos);
-      setMessage("Move right");
     }
   }, [tetrominoPos, fallingTetromino, rotationIndex, gameState]);
 
@@ -102,17 +96,14 @@ export function App() {
     const cleared = clearFullLines(mergedGrid);
     setGameState({ grid: cleared.grid });
     setTetrominoPos({ row: 0, col: 4 });
-    setMessage("Piece placed (hard drop)");
 
     const newTetromino = getNextRandomTetromino();
-    // Check if new tetromino cannot spawn → game over.
     if (
       checkCollision(cleared.grid, newTetromino.rotations[0], {
         row: 0,
         col: 4,
       })
     ) {
-      setMessage("Game Over");
       setGameOver(true);
     } else {
       setFallingTetromino(newTetromino);
@@ -120,7 +111,6 @@ export function App() {
     }
   }, [tetrominoPos, fallingTetromino, rotationIndex, gameState]);
 
-  // Auto-drop the tetromino every second.
   useEffect(() => {
     if (gameOver) return; // Stop auto-drop if game over.
     const interval = setInterval(() => {
@@ -141,7 +131,6 @@ export function App() {
             col: 4,
           })
         ) {
-          setMessage("Game Over");
           setGameOver(true);
         } else {
           setFallingTetromino(newTetromino);
@@ -158,7 +147,6 @@ export function App() {
     setFallingTetromino(getNextRandomTetromino());
     setRotationIndex(0);
     setTetrominoPos({ row: 0, col: 4 });
-    setMessage("");
     setGameOver(false);
   }, []);
 
@@ -204,7 +192,6 @@ export function App() {
             Rotate
           </text>
         </view>
-        <text className="Description">{message}</text>
       </view>
     </view>
   );
